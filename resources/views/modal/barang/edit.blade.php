@@ -70,7 +70,6 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                     <button type="submit" class="btn btn-primary">Simpan</button>
             </form>
-
             <form action="/hapus_barang/{{ $list->id_barang }}" method="POST">
                 @csrf
                 @method('delete')
