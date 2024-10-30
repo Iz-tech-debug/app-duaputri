@@ -8,15 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Barang extends Model
 {
     use HasFactory;
+    protected $table = 'barang';
 
+    protected $primaryKey = 'id_barang';
+    
     public function barangMasuk()
     {
         return $this->hasMany(BMasuk::class);
     }
+    public function units()
+    {
+        return $this->belongsTo(Unit::class, 'satuan_id');
+    }
 
-
-    protected $table = 'barang';
-
-    protected $primaryKey = 'id_barang';
-    // protected $fillable = 'barang';
+    public function categories()
+    {
+        return $this->belongsTo(Category::class, 'kategori_id');
+    }
 }

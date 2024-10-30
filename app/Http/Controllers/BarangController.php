@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
+use App\Models\Unit;
 use Illuminate\Http\Request;
 
 class BarangController extends Controller
@@ -12,9 +13,7 @@ class BarangController extends Controller
      */
     public function index()
     {
-        // Mengambil data barang di tabel barang
-        $data['barang'] = Barang::all();
-
+        $data['barang'] = Barang::with('units','categories')->get();
         return view('barang.barang', $data);
     }
 

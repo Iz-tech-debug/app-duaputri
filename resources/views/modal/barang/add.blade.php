@@ -23,39 +23,26 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="hr_awal" class="form-label">Harga Awal</label>
-                        <input type="text" class="form-control" id="hr_awal" name="hr_awal"
-                            placeholder="Contoh : 12000">
-                    </div>
-
-                    <div class="mb-3">
                         <label for="hr_jual" class="form-label">Harga Jual</label>
                         <input type="number" class="form-control" id="hr_jual" name="hr_jual"
                             placeholder="Contoh : 12500">
                     </div>
 
                     <div class="mb-3">
-                        <label for="exp" class="form-label">Tanggal Expire</label>
-                        <input type="date" class="form-control" id="exp" name="tgl_exp">
-                    </div>
-
-                    <div class="mb-3">
                         <label for="satuan" class="form-label">Satuan</label>
                         <select name="satuan" class="form-select" id="satuan">
-                            <option value="Lusin">Lusin</option>
-                            <option value="Kodi">Kodi</option>
-                            <option value="Karung">Karung</option>
-                            <option value="Pcs">Pcs</option>
-                            <option value="Kg">Kg</option>
-                            <option value="Liter">Liter</option>
+                            {{-- @foreach ($unit as $item)
+                                <option value="{{ $item->id}}">{{item->nama_satuan}}</option>
+                            @endforeach --}}
                         </select>
                     </div>
 
                     <div class="mb-3">
                         <label for="kategori" class="form-label">Kategori</label>
-                        <select name="kategori" class="form-select" id="kategori">
-                            <option value="Hasil Bumi">Hasil Bumi</option>
-                            <option value="Bahan Pangan">Bahan Pangan</option>
+                        <select name="kategori_id" class="form-select" id="kategori_id">
+                            @foreach ($categories as $item)
+                                <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
+                            @endforeach
                         </select>
                     </div>
 
@@ -67,8 +54,8 @@
 
                     <div class="mb-3">
                         <label for="jumlah" class="form-label">Jumlah</label>
-                        <input type="text" class="form-control" id="jumlah" name="jumlah"
-                            value="0" readonly>
+                        <input type="text" class="form-control" id="jumlah" name="jumlah" value="0"
+                            readonly>
                     </div>
                 </div>
 
