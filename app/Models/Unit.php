@@ -19,6 +19,6 @@ class Unit extends Model
     // Relasi dengan tabel barang
     public function barang()
     {
-        return $this->hasMany(Barang::class, 'id'); // Pastikan satuan_id adalah foreign key di tabel barang
+        return $this->hasMany(Barang::class, 'satuan_id'); // foreign key 'satuan_id' di tabel barang
     }
 }

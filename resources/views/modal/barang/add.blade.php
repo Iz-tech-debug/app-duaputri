@@ -29,33 +29,26 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="satuan" class="form-label">Satuan</label>
-                        <select name="satuan" class="form-select" id="satuan">
-                            {{-- @foreach ($unit as $item)
-                                <option value="{{ $item->id}}">{{item->nama_satuan}}</option>
-                            @endforeach --}}
+                        <label for="satuan_id" class="form-label">Satuan</label>
+                        <select name="satuan_id" class="form-select" id="satuan_id">
+                            @foreach ($units as $item)
+                                <option value="{{ $item->id}}">{{$item->nama_satuan}}</option>
+                            @endforeach
                         </select>
                     </div>
 
                     <div class="mb-3">
                         <label for="kategori" class="form-label">Kategori</label>
                         <select name="kategori_id" class="form-select" id="kategori_id">
-                            @foreach ($categories as $item)
+                            @foreach ($kategori as $item)
                                 <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
                             @endforeach
                         </select>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="no_order" class="form-label">Nomor Order</label>
-                        <input type="text" class="form-control" id="no_order" name="no_order"
-                            placeholder="Contoh : KD08761">
-                    </div>
-
-                    <div class="mb-3">
+                    <div class="mb-3" hidden>
                         <label for="jumlah" class="form-label">Jumlah</label>
-                        <input type="text" class="form-control" id="jumlah" name="jumlah" value="0"
-                            readonly>
+                        <input type="text" class="form-control" id="jumlah" name="jumlah" value="0">
                     </div>
                 </div>
 

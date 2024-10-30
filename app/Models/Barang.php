@@ -11,18 +11,19 @@ class Barang extends Model
     protected $table = 'barang';
 
     protected $primaryKey = 'id_barang';
-    
+
     public function barangMasuk()
     {
         return $this->hasMany(BMasuk::class);
     }
     public function units()
     {
-        return $this->belongsTo(Unit::class, 'satuan_id');
+        return $this->belongsTo(Unit::class, 'satuan_id'); // 'satuan_id' adalah foreign key di tabel 'barang'
     }
 
-    public function categories()
+    // Relasi ke tabel `kategori`
+    public function kategori()
     {
-        return $this->belongsTo(Category::class, 'kategori_id');
+        return $this->belongsTo(Category::class, 'kategori_id'); // 'kategori_id' adalah foreign key di tabel 'barang'
     }
 }

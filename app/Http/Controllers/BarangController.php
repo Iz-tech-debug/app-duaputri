@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Barang;
+use App\Models\Category;
 use App\Models\Unit;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,12 @@ class BarangController extends Controller
      */
     public function index()
     {
-        $data['barang'] = Barang::with('units','categories')->get();
+        // Ambil semua data barang dengan relasi ke units dan kategori
+        $data['barang'] = Barang::with(['units', 'kategori'])->get();
+        
+        // Ambil semua data units dan kategori untuk dropdown
+        $data['units'] = Unit::all();
+        $data['kategori'] = Category::all();
         return view('barang.barang', $data);
     }
 

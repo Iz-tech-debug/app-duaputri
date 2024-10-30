@@ -15,8 +15,9 @@ class Category extends Model
         'nama_kategori',
     ];
 
+    // Relasi ke tabel `barang`
     public function barang()
     {
-        return $this->hasMany(Barang::class, 'kategori_id');
+        return $this->hasMany(Barang::class, 'kategori_id'); // foreign key 'kategori_id' di tabel barang
     }
 }

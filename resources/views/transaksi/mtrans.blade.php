@@ -33,7 +33,6 @@
                                 <th>ID Barang</th>
                                 <th>Nama Barang</th>
                                 <th>Harga Jual</th>
-                                <th>Kategori</th>
                                 <th>Stok</th>
                                 <th>Aksi</th>
                             </tr>
@@ -44,7 +43,6 @@
                                     <td>{{ $list->id_barang }}</td>
                                     <td>{{ $list->nama_barang }}</td>
                                     <td>{{ $list->hr_jual }}</td>
-                                    <td>{{ $list->kategori }}</td>
                                     <td>{{ $list->jumlah }}</td>
                                     <td><button class="btn btn-primary mt-2" data-bs-toggle="modal"
                                             data-bs-target="#tambahkeranjang{{ $list->id_barang }}">Tambah</button></td>
