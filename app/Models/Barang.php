@@ -26,4 +26,10 @@ class Barang extends Model
     {
         return $this->belongsTo(Category::class, 'kategori_id'); // 'kategori_id' adalah foreign key di tabel 'barang'
     }
+
+    public function detailBarang()
+    {
+        return $this->hasMany(DBarang::class, 'barang_id');
+    }
+
 }

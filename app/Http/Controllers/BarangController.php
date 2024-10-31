@@ -15,8 +15,8 @@ class BarangController extends Controller
     public function index()
     {
         // Ambil semua data barang dengan relasi ke units dan kategori
-        $data['barang'] = Barang::with(['units', 'kategori'])->get();
-        
+        $data['barang'] = Barang::with(['units', 'kategori', 'detailBarang'])->get();
+
         // Ambil semua data units dan kategori untuk dropdown
         $data['units'] = Unit::all();
         $data['kategori'] = Category::all();
@@ -40,12 +40,9 @@ class BarangController extends Controller
         $barang = new Barang;
         $barang->id_barang = $request->id_barang;
         $barang->nama_barang = $request->nama_barang;
-        $barang->hr_awal = $request->hr_awal;
         $barang->hr_jual = $request->hr_jual;
-        $barang->tgl_exp = $request->tgl_exp;
-        $barang->satuan = $request->satuan;
-        $barang->kategori = $request->kategori;
-        $barang->no_order = $request->no_order;
+        $barang->satuan_id = $request->satuan_id;
+        $barang->kategori_id = $request->kategori_id;
         $barang->jumlah = 0;
         $barang->save();
         alert()->success('Berhasil', 'Barang Berhasil Ditambahkan.');

@@ -74,7 +74,7 @@
                         <div class="row mb-3">
                             <label for="konsumen" class="col-sm-4 col-form-label">Nama Konsumen</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="konsumen" name="konsumen">
+                                <input type="text" class="form-control" id="konsumen" name="konsumen" value="{{ old('konsumen') }}">
                             </div>
                         </div>
 
@@ -89,16 +89,14 @@
                         <div class="row mb-3">
                             <label for="diskon" class="col-sm-4 col-form-label">Diskon</label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" id="diskon" name="diskon" value="0"
-                                    oninput="updateTotal()">
+                                <input type="number" class="form-control" id="diskon" name="diskon" value="0">
                             </div>
                         </div>
 
                         <div class="row mb-3">
                             <label for="bayar" class="col-sm-4 col-form-label">Bayar</label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" id="bayar" name="bayar" value="0"
-                                    oninput="calculateChange()">
+                                <input type="number" class="form-control" id="bayar" name="bayar" value="0">
                             </div>
                         </div>
 
@@ -154,36 +152,6 @@
     </div>
 
     <script>
-        // Misalkan Anda memiliki subtotal di keranjang dalam array
-        const subtotals = [ /* ambil dari server atau sumber data */ ];
-
-        function calculateTotal() {
-            const total = subtotals.reduce((acc, curr) => acc + curr, 0);
-            document.getElementById('total').value = total;
-            updateTotal(); // Update total setelah menghitung
-        }
-
-        function updateTotal() {
-            const total = parseInt(document.getElementById('total').value) || 0;
-            const diskon = parseInt(document.getElementById('diskon').value) || 0;
-            const finalTotal = total - diskon;
-            document.getElementById('total').value = finalTotal;
-            calculateChange();
-        }
-
-        function calculateChange() {
-            const bayar = parseInt(document.getElementById('bayar').value) || 0;
-            const total = parseInt(document.getElementById('total').value) || 0;
-            const kembalian = bayar - total;
-            const sisa = total - bayar < 0 ? 0 : total - bayar;
-
-            document.getElementById('kembalian').value = kembalian < 0 ? 0 : kembalian;
-            document.getElementById('sisa').value = sisa;
-        }
-
-        // Panggil fungsi untuk menghitung total saat halaman dimuat
-        calculateTotal();
-
         // Edit Keranjang
         document.addEventListener('DOMContentLoaded', function() {
             const rows = document.querySelectorAll('.keranjang-row');

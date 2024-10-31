@@ -52,9 +52,12 @@
                                         <td>
                                             <button class="btn btn-primary mt-2" data-bs-toggle="modal"
                                                 data-bs-target="#editbarang{{ $list->id_barang }}">Edit</button>
+                                            <button class="btn btn-success mt-2" data-bs-toggle="modal"
+                                                data-bs-target="#lihatbarang{{ $list->id_barang }}"><i
+                                                    class="bi bi-eye"></i></button>
                                         </td>
                                         @include('modal.barang.edit')
-                                        {{-- @include('modal.barang.hapus') --}}
+                                        @include('modal.barang.detail')
                                     </tr>
                                 @endforeach
                             </tbody>
