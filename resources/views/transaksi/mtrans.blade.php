@@ -66,7 +66,7 @@
                         <div class="row mb-3">
                             <label for="notrans" class="col-sm-4 col-form-label">Nomor Transaksi</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="notrans" name="notrans" value="KD0001"
+                                <input type="text" class="form-control" id="notrans" name="notrans" value=""
                                     readonly>
                             </div>
                         </div>
@@ -74,45 +74,48 @@
                         <div class="row mb-3">
                             <label for="konsumen" class="col-sm-4 col-form-label">Nama Konsumen</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="konsumen" name="konsumen" value="{{ old('konsumen') }}">
+                                <input type="text" class="form-control" id="konsumen" name="konsumen">
                             </div>
                         </div>
 
                         <div class="row mb-3">
                             <label for="total" class="col-sm-4 col-form-label">Total</label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" id="total" name="total"
-                                    value="{{ $total }}" readonly>
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="diskon" class="col-sm-4 col-form-label">Diskon</label>
-                            <div class="col-sm-8">
-                                <input type="number" class="form-control" id="diskon" name="diskon" value="0">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">Rp</span>
+                                    <input type="text" class="form-control" id="total" name="total">
+                                </div>
                             </div>
                         </div>
 
                         <div class="row mb-3">
                             <label for="bayar" class="col-sm-4 col-form-label">Bayar</label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" id="bayar" name="bayar" value="0">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">Rp</span>
+                                    <input type="text" class="form-control" id="bayar" name="bayar">
+                                </div>
                             </div>
                         </div>
 
                         <div class="row mb-3">
                             <label for="kembalian" class="col-sm-4 col-form-label">Kembalian</label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" id="kembalian" name="kembalian" value="0"
-                                    readonly>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">Rp</span>
+                                    <input type="text" class="form-control" id="kembalian" name="kembalian">
+                                </div>
                             </div>
                         </div>
+
 
                         <div class="row mb-3">
                             <label for="sisa" class="col-sm-4 col-form-label">Sisa</label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control" id="sisa" name="sisa" value="0"
-                                    readonly>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">Rp</span>
+                                    <input type="text" class="form-control" id="sisa" name="sisa">
+                                </div>
                             </div>
                         </div>
 
@@ -124,6 +127,7 @@
                     </form>
 
                     <!-- Tabel Keranjang -->
+
 
                     <table class="table table-bordered table-hover table-responsive">
                         <thead>
@@ -146,6 +150,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    klik di baris keranjang untuk menghapus
                 </div>
             </div>
         </div>

@@ -51,7 +51,7 @@
                         <input type="text" class="form-control" id="jumlah" name="jumlah" value="0">
                     </div>
                 </div>
-
+                
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                     <button type="submit" class="btn btn-primary">Simpan</button>

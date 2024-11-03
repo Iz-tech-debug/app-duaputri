@@ -74,14 +74,10 @@ class BarangController extends Controller
         $barang = Barang::where('id_barang', $id_barang)->firstOrFail();
 
         // Update field barang
-        $barang->id_barang = $request->id_barang;
         $barang->nama_barang = $request->nama_barang;
-        $barang->hr_awal = $request->hr_awal;
         $barang->hr_jual = $request->hr_jual;
-        $barang->tgl_exp = $request->tgl_exp;
-        $barang->satuan = $request->satuan;
-        $barang->kategori = $request->kategori;
-        $barang->jumlah = $request->jumlah;
+        $barang->satuan_id = $request->satuan_id;
+        $barang->kategori_id = $request->kategori_id;
 
         // Simpan perubahan
         $barang->save();

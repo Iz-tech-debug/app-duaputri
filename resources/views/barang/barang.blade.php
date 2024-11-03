@@ -8,7 +8,7 @@
         <h1>Barang</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
+                <li class="breadcrumb-item"><a href="/admin/dashboard">Beranda</a></li>
                 <li class="breadcrumb-item active">Barang</li>
             </ol>
         </nav>
@@ -25,7 +25,7 @@
                         <div class="d-flex justify-content-between align-items-start mb-3 pt-3">
                             <div>
                                 <h5 class="card-title">Tabel Barang</h5>
-                                <p>Tambah atau edit data barang.</p>
+                                <p>*Tambah, edit, hapus, dan lihat detail barang dengan mengklik ikon mata.</p>
                             </div>
                             <button class="btn btn-primary mt-2" data-bs-toggle="modal"
                                 data-bs-target="#tambahbarang">Tambah Barang</button>
@@ -52,12 +52,12 @@
                                         <td>
                                             <button class="btn btn-primary mt-2" data-bs-toggle="modal"
                                                 data-bs-target="#editbarang{{ $list->id_barang }}">Edit</button>
+                                            @include('modal.barang.edit')
                                             <button class="btn btn-success mt-2" data-bs-toggle="modal"
                                                 data-bs-target="#lihatbarang{{ $list->id_barang }}"><i
                                                     class="bi bi-eye"></i></button>
+                                            @include('modal.barang.detail')
                                         </td>
-                                        @include('modal.barang.edit')
-                                        @include('modal.barang.detail')
                                     </tr>
                                 @endforeach
                             </tbody>

@@ -23,19 +23,7 @@
                     <div class="col-xxl-4 col-md-6">
                         <div class="card info-card sales-card">
 
-                            <div class="filter">
-                                <a class="icon" href="#" data-bs-toggle="dropdown"><i
-                                        class="bi bi-three-dots"></i></a>
-                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                    <li class="dropdown-header text-start">
-                                        <h6>Filter</h6>
-                                    </li>
 
-                                    <li><a class="dropdown-item" href="#">Hari ini</a></li>
-                                    <li><a class="dropdown-item" href="#">Bulan ini</a></li>
-                                    <li><a class="dropdown-item" href="#">Tahun ini</a></li>
-                                </ul>
-                            </div>
 
                             <div class="card-body">
                                 <h5 class="card-title">Penjualan <span>| Hari ini</span></h5>
@@ -60,19 +48,7 @@
                     <div class="col-xxl-4 col-md-6">
                         <div class="card info-card revenue-card">
 
-                            <div class="filter">
-                                <a class="icon" href="#" data-bs-toggle="dropdown"><i
-                                        class="bi bi-three-dots"></i></a>
-                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                    <li class="dropdown-header text-start">
-                                        <h6>Filter</h6>
-                                    </li>
 
-                                    <li><a class="dropdown-item" href="#">Hari ini</a></li>
-                                    <li><a class="dropdown-item" href="#">Bulan ini</a></li>
-                                    <li><a class="dropdown-item" href="#">Tahun ini</a></li>
-                                </ul>
-                            </div>
 
                             <div class="card-body">
                                 <h5 class="card-title">Pendapatan <span>| Bulan ini</span></h5>
@@ -98,19 +74,6 @@
 
                         <div class="card info-card customers-card">
 
-                            <div class="filter">
-                                <a class="icon" href="#" data-bs-toggle="dropdown"><i
-                                        class="bi bi-three-dots"></i></a>
-                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                                    <li class="dropdown-header text-start">
-                                        <h6>Filter</h6>
-                                    </li>
-
-                                    <li><a class="dropdown-item" href="#">Hari ini</a></li>
-                                    <li><a class="dropdown-item" href="#">Bulan ini</a></li>
-                                    <li><a class="dropdown-item" href="#">Tahun ini</a></li>
-                                </ul>
-                            </div>
 
                             <div class="card-body">
                                 <h5 class="card-title">Pelanggan <span>| Tahun ini</span></h5>
@@ -297,18 +260,6 @@
 
                 <!-- Recent Activity -->
                 <div class="card">
-                    <div class="filter">
-                        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                            <li class="dropdown-header text-start">
-                                <h6>Filter</h6>
-                            </li>
-
-                            <li><a class="dropdown-item" href="#">Hari ini</a></li>
-                            <li><a class="dropdown-item" href="#">Bulan ini</a></li>
-                            <li><a class="dropdown-item" href="#">Tahun ini</a></li>
-                        </ul>
-                    </div>
 
                     <div class="card-body">
                         <h5 class="card-title">Aktifitas Terkini <span>| Hari ini</span></h5>
@@ -341,7 +292,7 @@
                         <script>
                             document.addEventListener("DOMContentLoaded", () => {
                                 new ApexCharts(document.querySelector("#pieChart"), {
-                                    series: [44, 55, 13],
+                                    series: [5, 55, 13],
                                     chart: {
                                         height: 350,
                                         type: 'pie',

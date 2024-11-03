@@ -12,21 +12,9 @@
 
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label for="id_barang" class="form-label">ID/Kode Barang</label>
-                        <input type="text" class="form-control" id="id_barang" name="id_barang"
-                            value="{{ $list->id_barang }}">
-                    </div>
-
-                    <div class="mb-3">
                         <label for="nama_barang" class="form-label">Nama Barang</label>
                         <input type="text" class="form-control" id="nama_barang" name="nama_barang"
                             value="{{ $list->nama_barang }}">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="hr_awal" class="form-label">Harga Awal</label>
-                        <input type="number" class="form-control" id="hr_awal" name="hr_awal"
-                            value="{{ $list->hr_awal }}">
                     </div>
 
                     <div class="mb-3">
@@ -36,30 +24,20 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="tgl_exp" class="form-label">Tanggal Expire</label>
-                        <input type="date" class="form-control" id="tgl_exp" name="tgl_exp"
-                            value="{{ $list->tgl_exp }}" readonly>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="satuan" class="form-label">Satuan</label>
-                        <select name="satuan" class="form-select" id="satuan">
-                            <option value="Lusin" {{ $list->satuan == 'Lusin' ? 'selected' : '' }}>Lusin</option>
-                            <option value="Kodi" {{ $list->satuan == 'Kodi' ? 'selected' : '' }}>Kodi</option>
-                            <option value="Karung" {{ $list->satuan == 'Karung' ? 'selected' : '' }}>Karung</option>
-                            <option value="Pcs" {{ $list->satuan == 'Pcs' ? 'selected' : '' }}>Pcs</option>
-                            <option value="Kg" {{ $list->satuan == 'Kg' ? 'selected' : '' }}>Kg</option>
-                            <option value="Liter" {{ $list->satuan == 'Liter' ? 'selected' : '' }}>Liter</option>
+                        <label for="satuan_id" class="form-label">Satuan</label>
+                        <select name="satuan_id" class="form-select" id="satuan_id">
+                            @foreach ($units as $item)
+                                <option value="{{ $item->id }}">{{ $item->nama_satuan }}</option>
+                            @endforeach
                         </select>
                     </div>
 
                     <div class="mb-3">
                         <label for="kategori" class="form-label">Kategori</label>
-                        <select name="kategori" class="form-select" id="kategori">
-                            <option value="Hasil Bumi" {{ $list->kategori == 'Hasil Bumi' ? 'selected' : '' }}>Hasil
-                                Bumi</option>
-                            <option value="Bahan Pangan" {{ $list->kategori == 'Bahan Pangan' ? 'selected' : '' }}>
-                                Bahan Pangan</option>
+                        <select name="kategori_id" class="form-select" id="kategori_id">
+                            @foreach ($kategori as $item)
+                                <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
