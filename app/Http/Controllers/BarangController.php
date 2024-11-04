@@ -15,11 +15,12 @@ class BarangController extends Controller
     public function index()
     {
         // Ambil semua data barang dengan relasi ke units dan kategori
-        $data['barang'] = Barang::with(['units', 'kategori', 'detailBarang'])->get();
+        $data['barang'] = Barang::with(['units', 'kategori'])->get();
 
-        // Ambil semua data units dan kategori untuk dropdown
+        // Ambil semua data units(satuan) dan kategori untuk dropdown
         $data['units'] = Unit::all();
         $data['kategori'] = Category::all();
+
         return view('barang.barang', $data);
     }
 

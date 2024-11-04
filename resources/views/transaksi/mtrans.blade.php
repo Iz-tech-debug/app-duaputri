@@ -1,6 +1,6 @@
 @extends('layout.mainLayout')
 
-@section('title', 'Admin - Transaksi')
+@section('title', 'Transaksi')
 
 @section('content')
 
@@ -11,7 +11,7 @@
                 <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
                 <li class="breadcrumb-item active">Transaksi</li>
             </ol>
-            <h6 hidden>{{ Auth::user()->id }}</h6>
+
         </nav>
     </div><!-- End Page Title -->
 
@@ -63,11 +63,13 @@
                     <h5 class="card-title">Keranjang</h5>
                     <form action="/tambah_transaksi" method="POST">
                         @csrf
+                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+
                         <div class="row mb-3">
                             <label for="notrans" class="col-sm-4 col-form-label">Nomor Transaksi</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="notrans" name="notrans" value=""
-                                    readonly>
+                                <input type="text" class="form-control" id="notrans" name="notrans"
+                                    value="{{ $kodeOtomatis }}" readonly>
                             </div>
                         </div>
 
@@ -83,7 +85,8 @@
                             <div class="col-sm-8">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Rp</span>
-                                    <input type="text" class="form-control" id="total" name="total">
+                                    <input type="text" class="form-control" id="total" name="total"
+                                        value="{{ $total }}">
                                 </div>
                             </div>
                         </div>
@@ -103,7 +106,7 @@
                             <div class="col-sm-8">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Rp</span>
-                                    <input type="text" class="form-control" id="kembalian" name="kembalian">
+                                    <input type="text" class="form-control" id="kembalian" name="kembalian" readonly>
                                 </div>
                             </div>
                         </div>
@@ -114,7 +117,7 @@
                             <div class="col-sm-8">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Rp</span>
-                                    <input type="text" class="form-control" id="sisa" name="sisa">
+                                    <input type="text" class="form-control" id="sisa" name="sisa" readonly>
                                 </div>
                             </div>
                         </div>
@@ -122,6 +125,7 @@
                         <div class="d-grid gap-2 mt-4">
                             <button class="btn btn-success" type="submit">Simpan Transaksi</button>
                         </div>
+
                         <br>
 
                     </form>
@@ -169,6 +173,39 @@
                     modal.show();
                 });
             });
+        });
+
+        // Fungsi untuk memformat angka ke dalam format Rupiah
+        function formatRupiah(angka) {
+            return angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+
+        // Ambil elemen input
+        const bayarInput = document.getElementById("bayar");
+        const totalInput = document.getElementById("total");
+        const kembalianInput = document.getElementById("kembalian");
+        const sisaInput = document.getElementById("sisa");
+
+        // Konversi nilai Total ke number
+        const total = parseInt(totalInput.value.replace(/\./g, "")) || 0;
+
+        // Event listener pada input Bayar
+        bayarInput.addEventListener("input", function() {
+            // Ambil nilai bayar
+            const bayar = parseInt(bayarInput.value.replace(/\./g, "")) || 0;
+
+            // Hitung Kembalian dan Sisa
+            let kembalian = bayar >= total ? bayar - total : 0;
+            let sisa = total - bayar > 0 ? total - bayar : 0;
+
+            // Tampilkan hasil dalam format Rupiah
+            kembalianInput.value = formatRupiah(kembalian);
+            sisaInput.value = formatRupiah(sisa);
+        });
+
+        // Event listener untuk format input Bayar saat pengguna mengetik
+        bayarInput.addEventListener("keyup", function(e) {
+            bayarInput.value = bayarInput.value.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
         });
     </script>
 @endsection

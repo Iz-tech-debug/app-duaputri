@@ -25,8 +25,7 @@
 
                     <div class="mb-3">
                         <label for="qty" class="form-label">Kuantitas</label>
-                        <input type="text" class="form-control" id="qty" name="qty"
-                            placeholder="Contoh : 1" required>
+                        <input type="number" class="form-control" min="1" id="qty" name="qty"required>
                     </div>
                 </div>
 

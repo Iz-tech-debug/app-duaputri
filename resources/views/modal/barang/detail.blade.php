@@ -7,30 +7,13 @@
                 <h1 class="modal-title fs-5" id="lihatbarangLabel">Detail Barang</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            
+
             <div class="modal-body">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Nama Barang : {{ $list->nama_barang }}</li>
                     <li class="list-group-item">Kategori : {{ $list->kategori->nama_kategori }}</li>
                     <li class="list-group-item">Satuan : {{ $list->units->nama_satuan }}</li>
                 </ul>
-
-                <table class="table table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th>Jumlah</th>
-                            <th>Tanggal Expired</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($list->detailBarang as $detail)
-                            <tr>
-                                <td>{{ $detail->jumlah }}</td>
-                                <td>{{ $detail->tanggal_expired }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>

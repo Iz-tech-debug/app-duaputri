@@ -17,10 +17,15 @@
                             value="{{ $list->nama_barang }}">
                     </div>
 
-                    <div class="mb-3">
-                        <label for="hr_jual" class="form-label">Harga Jual</label>
-                        <input type="number" class="form-control" id="hr_jual" name="hr_jual"
-                            value="{{ $list->hr_jual }}">
+                    <div class="col mb-3">
+                        <label for="hr_jual" class="col-sm-4 col-form-label">Harga Jual</label>
+                        <div class="col-sm-12">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">Rp</span>
+                                <input type="text" class="form-control" id="hr_jual" name="hr_jual"
+                                    value="{{ number_format($list->hr_jual, 0, ',', '.') }}">
+                            </div>
+                        </div>
                     </div>
 
                     <div class="mb-3">
@@ -58,3 +63,10 @@
     </div>
 </div>
 </div>
+
+<script>
+    // Fungsi untuk memformat angka ke dalam format Rupiah
+    function formatRupiah(angka) {
+        return angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+</script>

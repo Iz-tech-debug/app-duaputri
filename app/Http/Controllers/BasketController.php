@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang;
 use App\Models\Basket;
+use App\Models\Transactions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,7 +25,11 @@ class BasketController extends Controller
         $data['baskets'] = Basket::where('user_id', $userId)->get();
 
         // Hitung total dari kolom subtotal di keranjang
-        $data['total'] = $data['baskets']->sum('subtotal'); // Pastikan 'subtotal' adalah nama kolom yang benar
+        $total = $data['baskets']->sum('subtotal');
+        $data['total'] = number_format($total, 0, ',', '.'); // Formatkan menjadi Rupiah
+
+        // Kode Otomatis
+        $data['kodeOtomatis'] = $this->kodeotomatis();
 
         return view('transaksi.mtrans', $data);
     }
@@ -32,7 +37,7 @@ class BasketController extends Controller
 
     public function kodeotomatis()
     {
-        $query = barang::selectRaw('MAX(RIGHT(notrans, 7)) AS max_number');
+        $query = Transactions::selectRaw('MAX(RIGHT(id, 7)) AS max_number');
         $kode = "0000001";
         if ($query->count() > 0) {
             $data = $query->first();
@@ -42,9 +47,7 @@ class BasketController extends Controller
         return "KDTRS" . $kode;
     }
 
-    /**
-     * Memasukan barang kedalam tabel keranjang
-     */
+    // Masukkan ke keranjang
     public function mkeranjang(Request $request)
     {
         // Ambil barang dari database berdasarkan id_barang
@@ -86,16 +89,6 @@ class BasketController extends Controller
         }
 
         return redirect('/admin/transaksi');
-    }
-
-
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**
