@@ -11,7 +11,8 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('transactions', function (Blueprint $table) {
-            $table->string('id')->primary();
+            $table->id();
+            $table->string('kode_transaksi')->unique();
             $table->unsignedBigInteger('user_id');
             $table->string('nama_konsumen');
             $table->date('tanggal_transaksi');

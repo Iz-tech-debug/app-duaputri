@@ -39,7 +39,7 @@ class BasketController extends Controller
 
     public function kodeotomatis()
     {
-        $query = Transactions::selectRaw('MAX(RIGHT(id, 7)) AS max_number')->first();
+        $query = Transactions::selectRaw('MAX(RIGHT(kode_transaksi, 7)) AS max_number')->first();
         $kode = "0000001"; // Default nilai awal
 
         if ($query && $query->max_number) {
@@ -149,10 +149,9 @@ class BasketController extends Controller
         $keranjang = Basket::all();
         $total = $keranjang->sum('subtotal');
 
-
         // Simpan ke dalam tabel transaksi di database
         $transaksi = new Transactions();
-        $transaksi->id = $kode_transaksi;
+        $transaksi->kode_transaksi = $kode_transaksi;
         $transaksi->user_id = Auth::id();
         $transaksi->nama_konsumen = $request->konsumen;
         $transaksi->tanggal_transaksi = $tanggal_transaksi;

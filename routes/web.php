@@ -120,11 +120,11 @@ Route::get('/transaksi', [BasketController::class, 'index'])->name('transaksi_in
 
 Route::post('/tambah_transaksi', [TransactionsController::class, 'store'])->name('tambah_transaksi');
 
+Route::get('/dtrans', [TransactionsController::class, 'index'])->name('all_transaksi');
 
 // Transaksi + Detail
 Route::post('/trans', [BasketController::class, 'simpanTransaksi'])->name('transaksi_simpan');
 
-Route::get('/dtrans', [TransactionsController::class, 'index'])->name('all_transaksi');
 
 
 

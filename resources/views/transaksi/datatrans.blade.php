@@ -42,7 +42,7 @@
                             <tbody>
                                 @foreach ($transactions as $list)
                                     <tr>
-                                        <td>{{ $list->id }}</td>
+                                        <td>{{ $list->kode_transaksi }}</td>
                                         <td>{{ $list->nama_konsumen }}</td>
                                         <td>{{ 'Rp ' . number_format($list->total, 0, ',', '.') }}</td>
                                         <td>
