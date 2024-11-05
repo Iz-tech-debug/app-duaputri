@@ -7,6 +7,7 @@ use App\Models\Barang;
 use App\Models\Basket;
 use App\Models\Transactions;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 
 class BasketController extends Controller
@@ -43,7 +44,7 @@ class BasketController extends Controller
         if ($query->count() > 0) {
             $data = $query->first();
             $number = ((int) $data->max_number) + 1;
-            $kode = sprintf("%03s", $number);
+            $kode = sprintf("%07s", $number);
         }
         return "KDTRS" . $kode;
     }
@@ -121,7 +122,7 @@ class BasketController extends Controller
             } else {
                 // Jika stok tidak cukup, beri notifikasi error
                 alert()->error('Gagal', 'Stok barang tidak mencukupi.');
-                return redirect('/admin/transaksi');
+                return redirect('/transaksi');
             }
         } else {
             // Jika qty baru lebih kecil, tambahkan stok kembali
@@ -147,6 +148,11 @@ class BasketController extends Controller
         $keranjang = Basket::all();
         $total = $keranjang->sum('subtotal');
 
+        // Hitung kembalian dan sisa di sini
+        $bayar = intval($request->bayar);
+        $kembalian = $bayar >= $total ? $bayar - $total : 0;
+        $sisa = $bayar < $total ? $total - $bayar : 0;
+
         // Simpan ke dalam tabel transaksi di database
         $transaksi = new Transactions();
         $transaksi->id = $kode_transaksi;
@@ -154,15 +160,14 @@ class BasketController extends Controller
         $transaksi->nama_konsumen = $request->konsumen;
         $transaksi->tanggal_transaksi = $tanggal_transaksi;
         $transaksi->total = $total;
-        $transaksi->bayar = $request->bayar;
-        $transaksi->kembalian = $request->kembalian;
-        $transaksi->sisa = $request->sisa;
+        $transaksi->bayar = $bayar;
+        $transaksi->kembalian = $kembalian;
+        $transaksi->sisa = $sisa;
         $transaksi->save();
 
-        // Simpan ke dalam tabel transaksi_detail di database
-        return redirect('/admin/transaksi');
+        // Ke halaman cetak struk
+        return redirect('/transaksi');
     }
-
 
     /**
      * Remove the specified resource from storage.

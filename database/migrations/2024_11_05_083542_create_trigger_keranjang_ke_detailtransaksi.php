@@ -20,7 +20,7 @@ return new class extends Migration {
                 INSERT INTO d_transactions
                 (transaksi_id, barang_id, qty, subtotal, created_at, updated_at)
                 SELECT
-                    NEW.id, kode_barang, qty, subtotal, now(), now()
+                    NEW.id, barang_id, qty, subtotal, now(), now()
                 FROM baskets;
 
                 -- Mengosongkan tabel keranjang

@@ -76,7 +76,7 @@
                         <div class="row mb-3">
                             <label for="konsumen" class="col-sm-4 col-form-label">Nama Konsumen</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="konsumen" name="konsumen">
+                                <input type="text" class="form-control" id="konsumen" name="konsumen" required>
                             </div>
                         </div>
 
@@ -99,6 +99,7 @@
                                     <input type="text" class="form-control" id="bayar" name="bayar">
                                 </div>
                             </div>
+                            <div id="error-message" class="text-danger mt-2" style="display:none;"></div>
                         </div>
 
                         <div class="row mb-3">
@@ -178,32 +179,29 @@
             return angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
         }
 
-        // Ambil elemen input
-        const bayarInput = document.getElementById("bayar");
-        const totalInput = document.getElementById("total");
-        const kembalianInput = document.getElementById("kembalian");
-        const sisaInput = document.getElementById("sisa");
+        // Event listener untuk input pada kolom "bayar"
+        document.getElementById("bayar").addEventListener("input", function() {
+            // Ambil nilai bayar, dan bersihkan titik atau koma
+            const bayar = parseInt(this.value.replace(/[.,]/g, "")) || 0;
+            // Ambil nilai total, dan bersihkan titik atau koma
+            const total = parseInt(document.getElementById("total").value.replace(/[.,]/g, "")) || 0;
 
-        // Konversi nilai Total ke number
-        const total = parseInt(totalInput.value.replace(/\./g, "")) || 0;
+            // Hitung nilai kembalian dan sisa
+            const kembalian = bayar >= total ? bayar - total : 0;
+            const sisa = bayar < total ? total - bayar : 0;
 
-        // Event listener pada input Bayar
-        bayarInput.addEventListener("input", function() {
-            // Ambil nilai bayar
-            const bayar = parseInt(bayarInput.value.replace(/\./g, "")) || 0;
-
-            // Hitung Kembalian dan Sisa
-            let kembalian = bayar >= total ? bayar - total : 0;
-            let sisa = total - bayar > 0 ? total - bayar : 0;
-
-            // Tampilkan hasil dalam format Rupiah
-            kembalianInput.value = formatRupiah(kembalian);
-            sisaInput.value = formatRupiah(sisa);
+            // Tampilkan kembalian dan sisa dalam format rupiah, tetapi simpan sebagai integer
+            document.getElementById("kembalian").value = formatRupiah(kembalian);
+            document.getElementById("sisa").value = formatRupiah(sisa);
         });
 
-        // Event listener untuk format input Bayar saat pengguna mengetik
-        bayarInput.addEventListener("keyup", function(e) {
-            bayarInput.value = bayarInput.value.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        // Fungsi untuk menghapus format titik dan koma sebelum submit form
+        document.querySelector("form").addEventListener("submit", function() {
+            // Bersihkan titik dan koma dari input sebelum dikirim ke database
+            document.getElementById("bayar").value = document.getElementById("bayar").value.replace(/[.,]/g, "");
+            document.getElementById("kembalian").value = document.getElementById("kembalian").value.replace(/[.,]/g,
+                "");
+            document.getElementById("sisa").value = document.getElementById("sisa").value.replace(/[.,]/g, "");
         });
     </script>
 @endsection

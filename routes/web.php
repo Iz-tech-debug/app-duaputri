@@ -124,6 +124,11 @@ Route::post('/tambah_transaksi', [TransactionsController::class, 'store'])->name
 Route::post('/trans', [BasketController::class, 'simpanTransaksi'])->name('transaksi_simpan');
 
 
+
+// Struk
+Route::get('/transaksi/struk/{id}', [BasketController::class, 'cetakStruk'])->name('transaksi.struk');
+
+
 // Keranjang
 
 Route::post('/tambah_keranjang', [BasketController::class, 'mkeranjang'])->name('tambah_keranjang');
