@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -13,8 +14,11 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
-        $data['users'] = User::all();
+        // Mengambil semua user beserta role-nya
+        $data['users'] = User::with('role')->get();
+
+        // Ambil data role
+        $data['role'] = Role::all();
 
         return view('petugas.users', $data);
     }
@@ -37,12 +41,13 @@ class UsersController extends Controller
         $user->nama = $request->nama;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
+        $user->id_role = $request->id_role;
         $user->alamat = $request->alamat;
         $user->umur = $request->umur;
         $user->jenis_kelamin = $request->jenis_kelamin;
         $user->no_telp = $request->no_telp;
         $user->save();
-        
+
         return redirect('petugas');
     }
 

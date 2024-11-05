@@ -5,7 +5,7 @@
             <form action="/tambah_petugas" method="POST">
                 @csrf
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Barang</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Petugas</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
@@ -45,6 +45,15 @@
                         <select name="jenis_kelamin" class="form-select" id="jk">
                             <option value="Laki-laki">Laki-laki</option>
                             <option value="Perempuan">Perempuan</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="id_role" class="form-label">Hak Akses</label>
+                        <select name="id_role" class="form-select" id="id_role">
+                            @foreach ($role as $item)
+                                <option value="{{ $item->id }}">{{ $item->nama_role }}</option>
+                            @endforeach
                         </select>
                     </div>
 

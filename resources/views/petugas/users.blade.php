@@ -38,9 +38,9 @@
                                     <th>Nama</th>
                                     <th>Email</th>
                                     <th>Alamat</th>
-                                    <th>Umur</th>
                                     <th>Nomor Telepon</th>
                                     <th>Jenis Kelamin</th>
+                                    <th>Hak Akses</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -51,14 +51,19 @@
                                         <td>{{ $list->nama }}</td>
                                         <td>{{ $list->email }}</td>
                                         <td>{{ $list->alamat }}</td>
-                                        <td>{{ $list->umur }}</td>
                                         <td>{{ $list->no_telp }}</td>
                                         <td>{{ $list->jenis_kelamin }}</td>
+                                        <td>{{ $list->role->nama_role ?? 'Tanpa Role' }}</td>
                                         <td>
-                                            <button class="btn btn-primary mt-2" data-bs-toggle="modal"
-                                                data-bs-target="#editpengguna{{ $list->id }}">Edit</button>
-                                            <button class="btn btn-danger mt-2" data-bs-toggle="modal"
-                                                data-bs-target="#hapuspengguna{{ $list->id }}">Hapus</button>
+                                            @if ($list->role->nama_role !== 'Admin')
+                                                <button class="btn btn-primary mt-2" data-bs-toggle="modal"
+                                                    data-bs-target="#editpengguna{{ $list->id }}">Edit</button>
+                                                <button class="btn btn-danger mt-2" data-bs-toggle="modal"
+                                                    data-bs-target="#hapuspengguna{{ $list->id }}">Hapus</button>
+                                            @else
+                                                <button class="btn btn-primary mt-2" disabled>Edit</button>
+                                                <button class="btn btn-danger mt-2" disabled>Hapus</button>
+                                            @endif
                                         </td>
                                     </tr>
                                     @include('modal.petugas.edit')

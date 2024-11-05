@@ -44,26 +44,7 @@ class BMasukController extends Controller
      */
     public function store(Request $request)
     {
-        // Validasi input
-        $request->validate([
-            'supplier_id' => 'required|exists:suppliers,id',
-            'barang_id' => 'required|exists:barang,id_barang',
-            'jumlah' => 'required|integer',
-            'harga_satuan' => 'required|integer',
-        ]);
-
-        // Hitung total harga
-        $totalHarga = $request->jumlah * $request->harga_satuan;
-
-        // Simpan barang masuk
-        $barangMasuk = new BMasuk();
-        $barangMasuk->supplier_id = $request->supplier_id;
-        $barangMasuk->barang_id = $request->barang_id;
-        $barangMasuk->jumlah = $request->jumlah;
-        $barangMasuk->harga_satuan = $request->harga_satuan;
-        $barangMasuk->total_harga = $totalHarga;
-        $barangMasuk->tanggal_masuk = now();
-        $barangMasuk->save();
+        
 
         return redirect('/supplierin')->with('success', 'Barang Masuk Berhasil Ditambahkan.');
     }

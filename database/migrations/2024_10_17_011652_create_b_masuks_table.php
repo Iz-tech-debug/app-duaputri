@@ -20,7 +20,6 @@ return new class extends Migration
             $table->integer('harga_satuan');
             $table->integer('total_harga');
             $table->date('tgl_masuk');
-            $table->date('tgl_exp');
             $table->timestamps();
 
             // Foreign key constraints

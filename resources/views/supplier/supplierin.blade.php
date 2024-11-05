@@ -68,10 +68,9 @@
 
                                 </div>
                             </div>
-                            <!-- Tombol Batalkan -->
+                            
                             <button type="button" class="btn btn-danger " id="remove-barang">Batalkan</button>
 
-                            <!-- Tombol Tambah Barang Lagi -->
                             <button type="button" class="btn btn-success" id="add-barang">Tambah Barang Lagi</button>
 
                             <button type="submit" class="btn btn-primary">Simpan</button>

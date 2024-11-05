@@ -20,26 +20,26 @@
 
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email"
-                            placeholder="Contoh : Joko@gmail.com" value="{{ $list->email }}">
+                        <input type="email" class="form-control" id="email"
+                            name="email"value="{{ $list->email }}">
                     </div>
 
                     <div class="mb-3">
                         <label for="alamat" class="form-label">Alamat</label>
-                        <input type="text" class="form-control" id="alamat" name="alamat"
-                            placeholder="Contoh : Bandung" value="{{ $list->alamat }}">
+                        <input type="text" class="form-control" id="alamat"
+                            name="alamat"value="{{ $list->alamat }}">
                     </div>
 
                     <div class="mb-3">
                         <label for="umur" class="form-label">Umur</label>
-                        <input type="number" class="form-control" id="umur" name="umur"
-                            placeholder="Contoh : 20" value="{{ $list->umur }}">
+                        <input type="number" class="form-control" id="umur"
+                            name="umur"value="{{ $list->umur }}">
                     </div>
 
                     <div class="mb-3">
                         <label for="notelepon" class="form-label">Nomor Telepon</label>
-                        <input type="number" class="form-control" id="notelepon" name="no_telp"
-                            placeholder="Contoh : 08123456789" value="{{ $list->no_telp }}">
+                        <input type="number" class="form-control" id="notelepon"
+                            name="no_telp"value="{{ $list->no_telp }}">
                     </div>
 
                     <div class="mb-3">
@@ -51,10 +51,21 @@
                                 Perempuan</option>
                         </select>
                     </div>
+
+                    <div class="mb-3">
+                        <label for="jk" class="form-label">Jenis Kelamin</label>
+                        <select name="jenis_kelamin" class="form-select" id="jk">
+                            @foreach ($role as $item)
+                                <option value="{{ $item->id }}"
+                                    {{ $list->id_role == $item->id ? 'selected' : '' }}>
+                                    {{ $item->nama_role }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="text" class="form-control" id="password" name="password"
-                            placeholder="Contoh : admin123">
+                        <input type="text" class="form-control" id="password" name="password">
                     </div>
                 </div>
 
