@@ -45,7 +45,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 //  Admin
 // Views
-Route::get('/admin/dashboard', function () {
+Route::get('/dashboard', function () {
     return view('admin.index');
 });
 
@@ -74,7 +74,7 @@ Route::get('/gudang', function () {
 
 // User
 // Views
-Route::get('/admin/petugas', [UsersController::class, 'index'])->name('petugas_index');
+Route::get('/petugas', [UsersController::class, 'index'])->name('petugas_index');
 
 Route::post('/tambah_petugas', [UsersController::class, 'store'])->name('tambah_petugas');
 
@@ -85,7 +85,7 @@ Route::delete('/hapus_petugas/{id}', [UsersController::class, 'destroy'])->name(
 
 // Barang
 // Views
-Route::get('/admin/barang', [BarangController::class, 'index'])->name('barang_index');
+Route::get('/barang', [BarangController::class, 'index'])->name('barang_index');
 
 Route::post('/tambah_barang', [BarangController::class, 'store'])->name('tambah_barang');
 
@@ -96,9 +96,9 @@ Route::delete('/hapus_barang/{id}', [BarangController::class, 'destroy'])->name(
 
 // Supplier
 // Views
-Route::get('/admin/supplier', [SupplierController::class, 'index'])->name('supplier_index');
+Route::get('/supplier', [SupplierController::class, 'index'])->name('supplier_index');
 
-Route::get('/admin/supplierin', [BMasukController::class, 'index'])->name('barangmasuk_index');
+Route::get('/supplierin', [BMasukController::class, 'index'])->name('barangmasuk_index');
 
 Route::post('/tambah_supplier', [SupplierController::class, 'store'])->name('tambah_supplier');
 
@@ -115,9 +115,14 @@ Route::delete('/hapus_supplier/{id}', [SupplierController::class, 'destroy'])->n
 // Transactions
 
 // Views
-Route::get('/admin/transaksi', [BasketController::class, 'index'])->name('transaksi_index');
+Route::get('/transaksi', [BasketController::class, 'index'])->name('transaksi_index');
 
 Route::post('/tambah_transaksi', [TransactionsController::class, 'store'])->name('tambah_transaksi');
+
+
+// Transaksi + Detail
+Route::post('/trans', [BasketController::class, 'simpanTransaksi'])->name('transaksi_simpan');
+
 
 // Keranjang
 
@@ -125,4 +130,5 @@ Route::post('/tambah_keranjang', [BasketController::class, 'mkeranjang'])->name(
 
 Route::put('/edit_keranjang/{id}', [BasketController::class, 'update'])->name('edit_keranjang');
 
-Route::get('/hapus_keranjang/{id}', [BasketController::class, 'destroy'])->name('hapus_keranjang');
+Route::delete('/hapus_keranjang/{id}', [BasketController::class, 'destroy'])->name('hapus_keranjang');
+

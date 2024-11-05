@@ -48,13 +48,6 @@
             <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
 
-        <div class="search-bar">
-            <form class="search-form d-flex align-items-center" method="POST" action="#">
-                <input type="text" name="query" placeholder="Cari" title="Enter search keyword">
-                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-            </form>
-        </div><!-- End Search Bar -->
-
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
 
@@ -83,7 +76,7 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                            <a class="dropdown-item d-flex align-items-center" href="#">
                                 <i class="bi bi-question-circle"></i>
                                 <span>Petunjuk Penggunaan</span>
                             </a>
@@ -113,7 +106,7 @@
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="/admin/dashboard">
+                <a class="nav-link collapsed" href="/dashboard">
                     <i class="bi bi-grid"></i>
                     <span>Antarmuka</span>
                 </a>
@@ -126,7 +119,7 @@
                 </a>
                 <ul id="barang" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="/admin/barang">
+                        <a href="/barang">
                             <i class="bi bi-circle"></i><span>Data Barang</span>
                         </a>
                     </li>
@@ -144,13 +137,13 @@
                 </a>
                 <ul id="supplier" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="/admin/supplier">
+                        <a href="/supplier">
                             <i class="bi bi-circle"></i><span>Data Pemasok</span>
                         </a>
                     </li>
 
                     <li>
-                        <a href="/admin/supplierin">
+                        <a href="/supplierin">
                             <i class="bi bi-circle"></i><span>Barang Masuk</span>
                         </a>
                     </li>
@@ -164,7 +157,7 @@
                 </a>
                 <ul id="petugas" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="/admin/petugas">
+                        <a href="/petugas">
                             <i class="bi bi-circle"></i><span>Data Petugas</span>
                         </a>
                     </li>
@@ -187,7 +180,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/transaksi">
+                        <a href="/transaksi">
                             <i class="bi bi-circle"></i><span>Transaksi</span>
                         </a>
                     </li>

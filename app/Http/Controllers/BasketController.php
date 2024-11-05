@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Barang;
 use App\Models\Basket;
 use App\Models\Transactions;
@@ -88,31 +89,7 @@ class BasketController extends Controller
             alert()->error('Gagal', 'Stok barang tidak mencukupi.');
         }
 
-        return redirect('/admin/transaksi');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Basket $keranjang)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Basket $keranjang)
-    {
-        //
+        return redirect('/transaksi');
     }
 
     /**
@@ -160,6 +137,29 @@ class BasketController extends Controller
         $keranjang->subtotal = $qty_baru * $keranjang->hr_jual;
         $keranjang->save();
 
+        return redirect('/transaksi');
+    }
+
+    public function simpanTransaksi(Request $request)
+    {
+        $kode_transaksi = $this->kodeOtomatis();
+        $tanggal_transaksi = Carbon::now()->format('Y-m-d');
+        $keranjang = Basket::all();
+        $total = $keranjang->sum('subtotal');
+
+        // Simpan ke dalam tabel transaksi di database
+        $transaksi = new Transactions();
+        $transaksi->id = $kode_transaksi;
+        $transaksi->user_id = Auth::id();
+        $transaksi->nama_konsumen = $request->konsumen;
+        $transaksi->tanggal_transaksi = $tanggal_transaksi;
+        $transaksi->total = $total;
+        $transaksi->bayar = $request->bayar;
+        $transaksi->kembalian = $request->kembalian;
+        $transaksi->sisa = $request->sisa;
+        $transaksi->save();
+
+        // Simpan ke dalam tabel transaksi_detail di database
         return redirect('/admin/transaksi');
     }
 
@@ -177,13 +177,13 @@ class BasketController extends Controller
 
         // Tambahkan kembali jumlah ke stok barang
         $barang = Barang::findOrFail($barangId);
-        $barang->stok += $jumlahDihapus;
+        $barang->jumlah += $jumlahDihapus;
         $barang->save();
 
         // Hapus keranjang
         $keranjang->delete();
 
-        return redirect("/admin/transaksi");
+        return redirect("/transaksi");
     }
 
 }

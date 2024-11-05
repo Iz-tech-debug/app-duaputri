@@ -46,8 +46,8 @@ class BarangController extends Controller
         $barang->kategori_id = $request->kategori_id;
         $barang->jumlah = 0;
         $barang->save();
-        alert()->success('Berhasil', 'Barang Berhasil Ditambahkan.');
-        return redirect('/admin/barang');
+
+        return redirect('/barang')->with('success', 'Barang Berhasil Ditambahkan.');
     }
 
     /**
@@ -71,7 +71,7 @@ class BarangController extends Controller
      */
     public function update(Request $request, string $id_barang)
     {
-        // Edit Barang, pastikan menggunakan id_barang sebagai kolom yang dicari
+        // Edit Barang
         $barang = Barang::where('id_barang', $id_barang)->firstOrFail();
 
         // Update field barang
@@ -83,18 +83,19 @@ class BarangController extends Controller
         // Simpan perubahan
         $barang->save();
 
-        // Notifikasi sukses
-        alert()->success('Berhasil', 'Barang Berhasil di Edit.');
-
-        return redirect('/admin/barang');
+        return redirect('/barang')->with('success', 'Barang Berhasil Diubah.');
     }
 
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Barang $barang)
+    public function destroy(Barang $barang, $id_barang  )
     {
-        //
+        // Hapus Barang
+        $barang = Barang::where('id_barang', $id_barang)->firstOrFail();
+        $barang->delete();
+
+        return redirect('/barang')->with('success', 'Barang Berhasil Dihapus.');
     }
 }

@@ -28,7 +28,7 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('admin/dashboard');
+            return redirect()->intended('dashboard');
         } else {
             Session::flash('status', 'failed');
             Session::flash('message', 'Username atau Password Salah');

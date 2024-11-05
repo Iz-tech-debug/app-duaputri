@@ -43,7 +43,7 @@
                                     <td>{{ $list->id_barang }}</td>
                                     <td>{{ $list->nama_barang }}</td>
                                     <td>{{ $list->hr_jual }}</td>
-                                    <td>{{ $list->jumlah }}</td>
+                                    <td style="{{ $list->jumlah < 10 ? 'color:red;' : '' }}">{{ $list->jumlah }}</td>
                                     <td><button class="btn btn-primary mt-2" data-bs-toggle="modal"
                                             data-bs-target="#tambahkeranjang{{ $list->id_barang }}">Tambah</button></td>
                                 </tr>
@@ -61,7 +61,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Keranjang</h5>
-                    <form action="/tambah_transaksi" method="POST">
+                    <form action="/trans" method="POST">
                         @csrf
                         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
 
@@ -86,7 +86,7 @@
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Rp</span>
                                     <input type="text" class="form-control" id="total" name="total"
-                                        value="{{ $total }}">
+                                        value="{{ $total }}" readonly>
                                 </div>
                             </div>
                         </div>
@@ -131,8 +131,6 @@
                     </form>
 
                     <!-- Tabel Keranjang -->
-
-
                     <table class="table table-bordered table-hover table-responsive">
                         <thead>
                             <tr>
@@ -154,7 +152,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    klik di baris keranjang untuk menghapus
+                    <p>*klik di baris keranjang untuk menghapus</p>
                 </div>
             </div>
         </div>

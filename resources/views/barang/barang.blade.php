@@ -47,8 +47,8 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $list->nama_barang }}</td>
-                                        <td>{{ $list->hr_jual }}</td>
-                                        <td>{{ $list->jumlah }}</td>
+                                        <td>{{ 'Rp ' . number_format($list->hr_jual, 0, ',', '.') }}</td>
+                                        <td style="{{ $list->jumlah < 10 ? 'color:red;' : '' }}">{{ $list->jumlah }}</td>
                                         <td>
                                             <button class="btn btn-primary mt-2" data-bs-toggle="modal"
                                                 data-bs-target="#editbarang{{ $list->id_barang }}">Edit</button>

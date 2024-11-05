@@ -39,7 +39,7 @@ class SupplierController extends Controller
         $supplier->nama_perusahaan = $request->nama_perusahaan;
         $supplier->save();
         alert()->success('Berhasil', 'Barang Berhasil Ditambahkan.');
-        return redirect('/admin/supplier');
+        return redirect('/supplier');
     }
 
     /**
@@ -71,7 +71,7 @@ class SupplierController extends Controller
         $supplier->nama_perusahaan = $request->nama_perusahaan;
         $supplier->save();
         alert()->success('Berhasil', 'Data Pengguna Berhasil Diubah.');
-        return redirect('/admin/supplier');
+        return redirect('/supplier');
     }
 
     /**

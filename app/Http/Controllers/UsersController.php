@@ -42,8 +42,8 @@ class UsersController extends Controller
         $user->jenis_kelamin = $request->jenis_kelamin;
         $user->no_telp = $request->no_telp;
         $user->save();
-        alert()->success('Berhasil', 'Pengguna Berhasil Ditambahkan.');
-        return redirect('/admin/petugas');
+        
+        return redirect('petugas');
     }
 
     /**
@@ -77,8 +77,8 @@ class UsersController extends Controller
         $user->jenis_kelamin = $request->jenis_kelamin;
         $user->no_telp = $request->no_telp;
         $user->save();
-        alert()->success('Berhasil', 'Data Pengguna Berhasil Diubah.');
-        return redirect('/admin/petugas');
+
+        return redirect('petugas');
     }
 
     /**
@@ -89,7 +89,6 @@ class UsersController extends Controller
         // Hapus
         $user = User::findOrFail($id);
         $user->delete();
-        alert()->success('SuccessAlert', 'Berhasil Dihapus.');
 
-        return redirect('/admin/petugas');
+        return redirect('petugas');
     }}
