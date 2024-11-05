@@ -39,13 +39,14 @@ class BasketController extends Controller
 
     public function kodeotomatis()
     {
-        $query = Transactions::selectRaw('MAX(RIGHT(id, 7)) AS max_number');
-        $kode = "0000001";
-        if ($query->count() > 0) {
-            $data = $query->first();
-            $number = ((int) $data->max_number) + 1;
+        $query = Transactions::selectRaw('MAX(RIGHT(id, 7)) AS max_number')->first();
+        $kode = "0000001"; // Default nilai awal
+
+        if ($query && $query->max_number) {
+            $number = (int) $query->max_number + 1;
             $kode = sprintf("%07s", $number);
         }
+
         return "KDTRS" . $kode;
     }
 
@@ -148,10 +149,6 @@ class BasketController extends Controller
         $keranjang = Basket::all();
         $total = $keranjang->sum('subtotal');
 
-        // Hitung kembalian dan sisa di sini
-        $bayar = intval($request->bayar);
-        $kembalian = $bayar >= $total ? $bayar - $total : 0;
-        $sisa = $bayar < $total ? $total - $bayar : 0;
 
         // Simpan ke dalam tabel transaksi di database
         $transaksi = new Transactions();
@@ -160,14 +157,15 @@ class BasketController extends Controller
         $transaksi->nama_konsumen = $request->konsumen;
         $transaksi->tanggal_transaksi = $tanggal_transaksi;
         $transaksi->total = $total;
-        $transaksi->bayar = $bayar;
-        $transaksi->kembalian = $kembalian;
-        $transaksi->sisa = $sisa;
+        $transaksi->bayar = intval($request->bayar);
+        $transaksi->kembalian = intval($request->kembalian);
+        $transaksi->sisa = intval($request->sisa);
         $transaksi->save();
 
         // Ke halaman cetak struk
         return redirect('/transaksi');
     }
+
 
     /**
      * Remove the specified resource from storage.

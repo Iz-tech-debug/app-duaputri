@@ -8,6 +8,7 @@ use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\BMasukController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TransactionsController;
+use App\Models\Transactions;
 
 /*
 |--------------------------------------------------------------------------
@@ -123,10 +124,8 @@ Route::post('/tambah_transaksi', [TransactionsController::class, 'store'])->name
 // Transaksi + Detail
 Route::post('/trans', [BasketController::class, 'simpanTransaksi'])->name('transaksi_simpan');
 
+Route::get('/dtrans', [TransactionsController::class, 'index'])->name('all_transaksi');
 
-
-// Struk
-Route::get('/transaksi/struk/{id}', [BasketController::class, 'cetakStruk'])->name('transaksi.struk');
 
 
 // Keranjang

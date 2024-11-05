@@ -2,19 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Basket;
-use Illuminate\Support\Str;
 use App\Models\Transactions;
 use Illuminate\Http\Request;
-use App\Models\DTransactions;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 
 class TransactionsController extends Controller
 {
     public function index()
     {
-
+        $transactions = Transactions::all();
+        return view('transaksi.datatrans', compact('transactions'));
     }
 
     /**

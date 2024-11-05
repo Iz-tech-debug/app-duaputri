@@ -175,7 +175,7 @@
                 </a>
                 <ul id="transaksi" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="/error">
+                        <a href="/dtrans">
                             <i class="bi bi-circle"></i><span>Data Transaksi</span>
                         </a>
                     </li>

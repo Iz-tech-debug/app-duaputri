@@ -44,7 +44,7 @@
             <section class="section error-404 min-vh-100 d-flex flex-column align-items-center justify-content-center">
                 <h1>404</h1>
                 <h2>Halaman yang ingin anda buka tidak ditemukan/terjadi kesalahan</h2>
-                <a class="btn" href="/admin/dashboard">Kembali</a>
+                <a class="btn" href="/dashboard">Kembali</a>
                 <img src="{{ asset('img/not-found.svg') }}" class="img-fluid py-5" alt="Page Not Found">
                 <div class="credits">
                     &copy; Copyright <strong><span>Daffa Faiz Alghozi</span></strong>. All Rights Reserved

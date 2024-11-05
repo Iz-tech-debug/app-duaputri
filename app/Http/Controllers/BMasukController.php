@@ -65,7 +65,7 @@ class BMasukController extends Controller
         $barangMasuk->tanggal_masuk = now();
         $barangMasuk->save();
 
-        return redirect()->route('barangMasuk.index')->with('success', 'Barang berhasil ditambahkan');
+        return redirect('/supplierin')->with('success', 'Barang Masuk Berhasil Ditambahkan.');
     }
 
     /**

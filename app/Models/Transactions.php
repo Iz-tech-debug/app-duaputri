@@ -13,6 +13,8 @@ class Transactions extends Model
     {
         return $this->hasMany(DTransactions::class, 'transaksi_id');
     }
+
+    protected $primaryKey = 'id';
     
     protected $fillable = [
         'id',

@@ -10,6 +10,7 @@
 
             <div class="modal-body">
                 <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Kode Barang : {{ $list->id_barang }}</li>
                     <li class="list-group-item">Nama Barang : {{ $list->nama_barang }}</li>
                     <li class="list-group-item">Kategori : {{ $list->kategori->nama_kategori }}</li>
                     <li class="list-group-item">Satuan : {{ $list->units->nama_satuan }}</li>
