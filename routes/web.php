@@ -6,6 +6,7 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\BasketController;
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\BMasukController;
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TransactionsController;
 use App\Models\Transactions;
@@ -46,9 +47,13 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 //  Admin
 // Views
-Route::get('/dashboard', function () {
-    return view('admin.index');
-});
+// Route::get('/dashboard', function () {
+//     return view('admin.index');
+// });
+
+
+Route::get('/dashboard', [IndexController::class, 'index'])->name('index');
+
 
 // Views error
 Route::get('/error', function () {
@@ -106,6 +111,11 @@ Route::post('/tambah_supplier', [SupplierController::class, 'store'])->name('tam
 Route::put('/update_supplier/{id}', [SupplierController::class, 'update'])->name('update_supplier');
 
 Route::delete('/hapus_supplier/{id}', [SupplierController::class, 'destroy'])->name('hapus_supplier');
+
+
+// Barang Masuk
+// Views
+Route::post('/b_masuk', [BMasukController::class, 'store'])->name('tambah_barangmasuk');
 
 
 // End All Users Function

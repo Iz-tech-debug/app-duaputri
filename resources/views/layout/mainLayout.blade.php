@@ -61,7 +61,7 @@
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
                         data-bs-toggle="dropdown">
-                        <img src="{{ asset('img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
+
                         <span class="d-none d-md-block dropdown-toggle ps-2">{{ Auth::user()->nama }}</span>
                     </a><!-- End Profile Iamge Icon -->
 
@@ -121,11 +121,6 @@
                     <li>
                         <a href="/barang">
                             <i class="bi bi-circle"></i><span>Data Barang</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/error">
-                            <i class="bi bi-circle"></i><span>Statistik</span>
                         </a>
                     </li>
                 </ul>

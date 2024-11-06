@@ -33,7 +33,7 @@
                             @csrf
                             <div class="mb-3">
                                 <label for="id_trans" class="form-label">Nota Transaksi</label>
-                                <input type="text" class="form-control" id="id_trans" name="id_trans" required>
+                                <input type="text" class="form-control" id="id_trans" name="id_trans" readonly>
                             </div>
 
                             <!-- Dropdown Nama Supplier -->
@@ -47,28 +47,34 @@
                                 </select>
                             </div>
 
-                            <div class="mb-3">
-                                <label for="tanggal_masuk" class="form-label">Tanggal Masuk</label>
-                                <input type="date" class="form-control" id="tanggal_masuk" name="tanggal_masuk" required>
-                            </div>
-
                             <!-- Container untuk input barang -->
                             <div id="barang-container">
                                 <div class="barang-input mb-3">
+
                                     <label for="barang_id" class="form-label">Nama Barang</label>
                                     <select class="form-control" name="barang_id[]">
                                         <option value="">Pilih Barang</option>
                                         @foreach ($barang as $list)
-                                            <option value="{{ $list->id }}">{{ $list->nama_barang }}</option>
+                                            <option value="{{ $list->id_barang }}">{{ $list->nama_barang }}</option>
                                         @endforeach
                                     </select>
 
-                                    <label for="jumlah" class="form-label">Kuantitas</label>
-                                    <input type="text" class="form-control" name="jumlah[]" required>
+                                    <label for="harga_satuan" class="form-label">Harga Satuan</label>
+                                    <input type="number" min="0" class="form-control" name="harga_satuan[]" required>
 
+                                    <label for="jumlah" class="form-label">Kuantitas</label>
+                                    <input type="number" min="0" class="form-control" name="jumlah[]" required>
+
+                                    <label for="total_harga" class="form-label">Total Harga</label>
+                                    <input type="number" min="0" class="form-control" name="total_harga[]" readonly>
+                                    <!-- Readonly agar hanya menampilkan hasil perhitungan -->
+
+                                    <label for="tanggal_masuk" class="form-label">Tanggal Masuk</label>
+                                    <input type="date" class="form-control" name="tanggal_masuk[]" required>
                                 </div>
+                                <hr>
                             </div>
-                            
+
                             <button type="button" class="btn btn-danger " id="remove-barang">Batalkan</button>
 
                             <button type="button" class="btn btn-success" id="add-barang">Tambah Barang Lagi</button>
@@ -90,7 +96,7 @@
                                 @foreach ($TBMasuk as $item)
                                     <tr class="bmasuk-row">
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->id_tmasuk }}</td>
+                                        <td>{{ $item->id }}</td>
                                         <td>{{ $item->supplier->nama_suplier }}</td> <!-- Akses nama pemasok dari relasi -->
                                         <td>{{ $item->tgl_bmasuk }}</td>
                                     </tr>
@@ -104,6 +110,19 @@
     </section>
 
     <script>
+        document.getElementById('barang-container').addEventListener('input', function(e) {
+            if (e.target && e.target.name === 'jumlah[]' || e.target.name === 'harga_satuan[]') {
+                const barangInputs = document.querySelectorAll('.barang-input');
+                barangInputs.forEach(input => {
+                    const hargaSatuan = parseFloat(input.querySelector('input[name="harga_satuan[]"]')
+                        .value) || 0;
+                    const jumlah = parseFloat(input.querySelector('input[name="jumlah[]"]').value) || 0;
+                    const totalHarga = hargaSatuan * jumlah;
+                    input.querySelector('input[name="total_harga[]"]').value = totalHarga.toFixed(2);
+                });
+            }
+        });
+
         document.getElementById('add-barang').addEventListener('click', function() {
             // Ambil container untuk barang
             let barangContainer = document.getElementById('barang-container');
@@ -111,15 +130,8 @@
             // Duplikasi bagian barang dan tambahkan ke container
             let newBarang = document.querySelector('.barang-input').cloneNode(true);
             newBarang.querySelector('select').value = ''; // Reset dropdown
-            newBarang.querySelector('input').value = ''; // Reset jumlah
+            newBarang.querySelectorAll('input').forEach(input => input.value = ''); // Reset semua input
             barangContainer.appendChild(newBarang);
-        });
-
-        // Event listener untuk tombol "Batalkan"
-        document.getElementById('barang-container').addEventListener('click', function(e) {
-            if (e.target && e.target.classList.contains('remove-barang')) {
-                e.target.closest('.barang-input').remove(); // Hapus barang yang dipilih
-            }
         });
     </script>
 @endsection

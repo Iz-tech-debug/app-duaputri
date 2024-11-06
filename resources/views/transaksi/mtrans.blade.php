@@ -96,7 +96,7 @@
                             <div class="col-sm-8">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Rp</span>
-                                    <input type="text" class="form-control" id="bayar" name="bayar">
+                                    <input type="number" min="0" class="form-control" id="bayar" name="bayar">
                                 </div>
                             </div>
                             <div id="error-message" class="text-danger mt-2" style="display:none;"></div>

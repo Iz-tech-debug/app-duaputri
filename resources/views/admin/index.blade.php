@@ -7,7 +7,7 @@
         <h1>Antarmuka</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item active">Home</li>
+                <li class="breadcrumb-item active">Beranda</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -26,16 +26,14 @@
 
 
                             <div class="card-body">
-                                <h5 class="card-title">Penjualan <span>| Hari ini</span></h5>
+                                <h5 class="card-title">Penjualan</h5>
 
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="bi bi-cart"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>145</h6>
-                                        <span class="text-success small pt-1 fw-bold">12%</span> <span
-                                            class="text-muted small pt-2 ps-1">Naik</span>
+                                        <h6>{{ $totalPenjualan }}</h6>
 
                                     </div>
                                 </div>
@@ -51,16 +49,14 @@
 
 
                             <div class="card-body">
-                                <h5 class="card-title">Pendapatan <span>| Bulan ini</span></h5>
+                                <h5 class="card-title">Pendapatan Kotor</h5>
 
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="bi bi-currency-dollar"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>$3,264</h6>
-                                        <span class="text-success small pt-1 fw-bold">8%</span> <span
-                                            class="text-muted small pt-2 ps-1">Naik</span>
+                                        <h6>Rp {{ number_format($pendapatan, 0, ',', '.') }}</h6>
 
                                     </div>
                                 </div>
@@ -76,16 +72,14 @@
 
 
                             <div class="card-body">
-                                <h5 class="card-title">Pelanggan <span>| Tahun ini</span></h5>
+                                <h5 class="card-title">Pegawai</h5>
 
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="bi bi-people"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>1244</h6>
-                                        <span class="text-danger small pt-1 fw-bold">12%</span> <span
-                                            class="text-muted small pt-2 ps-1">Menurun</span>
+                                        <h6>{{ $totalPegawai }}</h6>
 
                                     </div>
                                 </div>
@@ -99,65 +93,31 @@
                     <div class="col-12">
                         <div class="card recent-sales overflow-auto">
 
-                            <div class="filter">
-                                <a class="icon" href="#" data-bs-toggle="dropdown"><i
-                                        class="bi bi-three-dots"></i></a>
-                            </div>
-
                             <div class="card-body">
-                                <h5 class="card-title">Pendapatan Terkini <span>| Hari ini</span></h5>
+                                <h5 class="card-title">Pendapatan Terkini</h5>
 
                                 <table class="table table-borderless datatable">
                                     <thead>
                                         <tr>
                                             <th scope="col">#</th>
-                                            <th scope="col">Customer</th>
-                                            <th scope="col">Product</th>
-                                            <th scope="col">Price</th>
+                                            <th scope="col">Konsumen</th>
+                                            <th scope="col">Total</th>
                                             <th scope="col">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row"><a href="#">#2457</a></th>
-                                            <td>Brandon Jacob</td>
-                                            <td><a href="#" class="text-primary">At praesentium minu</a>
-                                            </td>
-                                            <td>$64</td>
-                                            <td><span class="badge bg-success">Approved</span></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"><a href="#">#2147</a></th>
-                                            <td>Bridie Kessler</td>
-                                            <td><a href="#" class="text-primary">Blanditiis dolor omnis
-                                                    similique</a></td>
-                                            <td>$47</td>
-                                            <td><span class="badge bg-warning">Pending</span></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"><a href="#">#2049</a></th>
-                                            <td>Ashleigh Langosh</td>
-                                            <td><a href="#" class="text-primary">At recusandae
-                                                    consectetur</a></td>
-                                            <td>$147</td>
-                                            <td><span class="badge bg-success">Approved</span></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"><a href="#">#2644</a></th>
-                                            <td>Angus Grady</td>
-                                            <td><a href="#" class="text-primar">Ut voluptatem id earum
-                                                    et</a></td>
-                                            <td>$67</td>
-                                            <td><span class="badge bg-danger">Rejected</span></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"><a href="#">#2644</a></th>
-                                            <td>Raheem Lehner</td>
-                                            <td><a href="#" class="text-primary">Sunt similique
-                                                    distinctio</a></td>
-                                            <td>$165</td>
-                                            <td><span class="badge bg-success">Approved</span></td>
-                                        </tr>
+                                        @foreach ($transaksi as $item)
+                                            <tr>
+                                                <th scope="row">{{ $loop->iteration }}</th>
+                                                <td>{{ $item->nama_konsumen }}</td>
+                                                <td>Rp. {{ number_format($item->total, 0, ',', '.') }}</td>
+                                                <td>
+                                                    <span class="badge {{ $item->sisa == 0 ? 'bg-success' : 'bg-danger' }}">
+                                                        {{ $item->sisa == 0 ? 'Lunas' : 'Hutang' }}
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
 
@@ -175,7 +135,7 @@
                 <div class="card">
 
                     <div class="card-body">
-                        <h5 class="card-title">Aktifitas Terkini <span>| Hari ini</span></h5>
+                        <h5 class="card-title">Aktivitas Terkini</h5>
 
                         <div class="activity">
 
@@ -183,9 +143,7 @@
                                 <div class="activite-label">32 min</div>
                                 <i class='bi bi-circle-fill activity-badge text-success align-self-start'></i>
                                 <div class="activity-content">
-                                    Quia quae rerum <a href="#" class="fw-bold text-dark">explicabo
-                                        officiis</a>
-                                    beatae
+                                    lorem ipsum
                                 </div>
                             </div><!-- End activity item-->
 
@@ -205,7 +163,7 @@
                         <script>
                             document.addEventListener("DOMContentLoaded", () => {
                                 new ApexCharts(document.querySelector("#pieChart"), {
-                                    series: [5, 55, 13],
+                                    series: [{{ $pendapatan }}],
                                     chart: {
                                         height: 350,
                                         type: 'pie',
@@ -213,7 +171,7 @@
                                             show: true
                                         }
                                     },
-                                    labels: ['Pendapatan', 'Pengeluaran', 'Hutang']
+                                    labels: ['Pendapatan']
                                 }).render();
                             });
                         </script>
