@@ -23,8 +23,6 @@
                     <div class="col-xxl-4 col-md-6">
                         <div class="card info-card sales-card">
 
-
-
                             <div class="card-body">
                                 <h5 class="card-title">Penjualan</h5>
 

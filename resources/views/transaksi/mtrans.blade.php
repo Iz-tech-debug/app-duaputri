@@ -160,6 +160,15 @@
     </div>
 
     <script>
+        document.getElementById("bayar").addEventListener("keyup", function() {
+            value = this.value;
+            // console.log(value);
+
+            if (value < 0) {
+                this.value = 0;
+            }
+        });
+
         // Edit Keranjang
         document.addEventListener('DOMContentLoaded', function() {
             const rows = document.querySelectorAll('.keranjang-row');

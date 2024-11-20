@@ -24,15 +24,25 @@
 
                     <div class="mb-3">
                         <label for="hr_jual" class="form-label">Harga Jual</label>
-                        <input type="number" class="form-control" id="hr_jual" name="hr_jual"
-                            placeholder="Contoh : 12500">
+                        <input type="text" type="number" class="form-control" id="hr_jual" name="hr_jual"
+                            placeholder="Contoh : 12500" min="1">
                     </div>
 
+                    <script>
+                        document.getElementById("hr_jual").addEventListener("keyup", function() {
+                            value = this.value;
+                            // console.log(value);
+
+                            if (value < 0) {
+                                this.value = 0;
+                            }
+                        });
+                    </script>
                     <div class="mb-3">
                         <label for="satuan_id" class="form-label">Satuan</label>
                         <select name="satuan_id" class="form-select" id="satuan_id">
                             @foreach ($units as $item)
-                                <option value="{{ $item->id}}">{{$item->nama_satuan}}</option>
+                                <option value="{{ $item->id }}">{{ $item->nama_satuan }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -51,7 +61,7 @@
                         <input type="text" class="form-control" id="jumlah" name="jumlah" value="0">
                     </div>
                 </div>
-                
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                     <button type="submit" class="btn btn-primary">Simpan</button>

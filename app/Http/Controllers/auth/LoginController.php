@@ -17,6 +17,7 @@ class LoginController extends Controller
         //
         return view("auth.login");
     }
+
     public function cek_login(Request $request)
     {
         $credentials = $request->validate([
@@ -34,10 +35,6 @@ class LoginController extends Controller
             Session::flash('message', 'Username atau Password Salah');
             return redirect('/login');
         }
-
-        // return back()->withErrors([
-        //     'email' => 'The provided credentials do not match our records.',
-        // ])->onlyInput('email');
     }
     public function logout(Request $request)
     {

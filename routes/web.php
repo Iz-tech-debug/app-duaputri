@@ -32,8 +32,6 @@ Route::get('/', function () {
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 
-Route::get('/login', [LoginController::class, 'index'])->name('login');
-
 Route::post('/login', [LoginController::class, 'cek_login'])->name('cek_login');
 
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
